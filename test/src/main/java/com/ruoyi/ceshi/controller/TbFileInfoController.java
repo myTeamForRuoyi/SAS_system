@@ -97,7 +97,7 @@ public class TbFileInfoController extends BaseController {
 
         try {
             String uploadFile = fastDFSClientWrapper.uploadFile(multipartFile);
-            String name = multipartFile.getName();
+            String name = multipartFile.getOriginalFilename();
             TbFileInfo fileInfo = new TbFileInfo();
             fileInfo.setFileUrl(uploadFile);
             fileInfo.setFileName(name);
@@ -121,17 +121,11 @@ public class TbFileInfoController extends BaseController {
             fileInfo.setName(tbFileInfo.getFileName());
             fileInfo.setFileUrl(tbFileInfo.getFileUrl());
             byte[] bytes = fastDFSClientWrapper.downLoadFile(fileInfo);
-//            response.setCharacterEncoding("utf-8");
-//            response.setContentType("multipart/form-data");
-//            response.setHeader("Content-Disposition",
-//                    "attachment;fileName=" + FileUtils.setFileDownloadHeader(request, tbFileInfo.getFileName()));
-//            FileUtils.writeBytes(bytes, response.getOutputStream());
             InputStream is = new ByteArrayInputStream(bytes);
             OutputStream os = response.getOutputStream();
-            response.setHeader("Content-Disposition", "attachment; filename=" + "fileName");
+            response.setHeader("Content-Disposition", "attachment; filename=" + tbFileInfo.getFileName());
             response.setContentType("application/force-download");
             IOUtils.copy(is, os);
-            //return new ByteArrayInputStream(bytes);
     }
 
 

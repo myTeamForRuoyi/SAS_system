@@ -44,16 +44,10 @@ public class FastDFSClientWrapper {
         try {
             String fileName = URLEncoder.encode(fileInfo.getName(), "UTF8");
             DownloadByteArray callback = new DownloadByteArray();
-            String url = fileInfo.getFileUrl().replaceAll("http://119.3.101.139:8080/", "");
-            url="M00/00/00/wKgAd1-GmXKAeJEgAAM2TdPAalU617.png";
+            String url = fileInfo.getFileUrl().replaceAll("http://119.3.101.139:8080/group1/", "");
+//            url="M00/00/00/wKgAd1-Hq2OAcuVfAcuwoBlmW4U633.exe";
             byte[] bytes = storageClient.downloadFile("group1", url, callback);
             return bytes;
-            /*httpServletResponse.reset();
-            httpServletResponse.setContentType("application/x-download");
-            httpServletResponse.addHeader("Content-Disposition" ,"attachment;filename=\"" +fileName+ "\"");
-            httpServletResponse.getOutputStream().write(b);
-            service.updateDownloadCount(id);
-            httpServletResponse.getOutputStream().close();*/
         } catch (Exception e) {
             return null;
         }
