@@ -11,6 +11,7 @@ import com.ruoyi.ceshi.domain.TbFileInfo;
  */
 public interface ITbFileInfoService 
 {
+    
     /**
      * 查询文件
      * 
