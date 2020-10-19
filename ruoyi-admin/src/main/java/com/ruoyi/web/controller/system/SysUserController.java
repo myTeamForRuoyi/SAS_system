@@ -133,6 +133,7 @@ public class SysUserController extends BaseController
         {
             return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
+        user.setDelFlag("0");
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());

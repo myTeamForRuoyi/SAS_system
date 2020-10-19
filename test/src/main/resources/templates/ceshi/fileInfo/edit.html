@@ -22,7 +22,11 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">测试字段：</label>
                 <div class="col-sm-8">
-                    <input name="test01" th:field="*{test01}" class="form-control" type="text">
+                    <label class="col-sm-2 control-label">回显数据字典值：</label>
+                    <div class="form-control-static" th:text="${@dict.getLabel('tb_file_Info_test', test01)}">
+                    </div>
+
+<!--                    <input name="test01" th:field="*{test01}" class="form-control" type="text">-->
                 </div>
             </div>
             <div class="form-group">    
@@ -35,11 +39,17 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
+
         var prefix = ctx + "ceshi/fileInfo";
         $("#form-fileInfo-edit").validate({
             focusCleanup: true
         });
-
+        // 获取数据字典数据
+        var datas = [[${@dict.getType('tb_file_Info_test')}]];
+        // 格式化数据字典
+        formatter: function(value, row, index) {
+            return $.table.selectDictLabel(datas, value);
+        }
         function submitHandler() {
             if ($.validate.form()) {
                 $.operate.save(prefix + "/edit", $('#form-fileInfo-edit').serialize());
