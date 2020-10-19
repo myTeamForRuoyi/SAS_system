@@ -31,7 +31,7 @@ public class TbFileInfo extends BaseEntity
 
     /** 测试字段 */
     @Excel(name = "测试字段")
-    private Long test01;
+    private String test01;
 
     /** 测试字段 */
     @Excel(name = "测试字段")
@@ -73,16 +73,16 @@ public class TbFileInfo extends BaseEntity
     {
         return delFlag;
     }
-    public void setTest01(Long test01) 
-    {
+
+    public String getTest01() {
+        return test01;
+    }
+
+    public void setTest01(String test01) {
         this.test01 = test01;
     }
 
-    public Long getTest01() 
-    {
-        return test01;
-    }
-    public void setTest02(Long test02) 
+    public void setTest02(Long test02)
     {
         this.test02 = test02;
     }

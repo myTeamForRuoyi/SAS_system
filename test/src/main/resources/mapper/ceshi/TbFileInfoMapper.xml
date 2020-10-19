@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteTbFileInfoByIds" parameterType="String">
         delete from tb_file_info where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
+            cast(#{id} as INT)
         </foreach>
     </delete>
 
